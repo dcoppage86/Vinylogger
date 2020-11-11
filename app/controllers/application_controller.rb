@@ -9,7 +9,24 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome
+    erb :index
   end
+
+  not_found do
+    status 404
+    erb :failure
+  end
+
+  helpers do
+		def logged_in?
+			!!session[:user_id]
+		end
+
+		def current_user
+			User.find(session[:user_id])
+		end
+	end
+
+
 
 end
