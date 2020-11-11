@@ -1,11 +1,14 @@
 require './config/environment'
+require './app/models/user'
+require './app/models/album'
+require './app/models/review'
 
 class ApplicationController < Sinatra::Base
 
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-    set :session_secret, 'password_security'
+    set :session_secret, '5eb78c1c609a61c9f5408facc88e7138'
   end
 
   get "/" do
