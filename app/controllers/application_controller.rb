@@ -12,13 +12,13 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :index
+    erb :"/applications/home"
   end
 
-  not_found do
-    status 404
-    erb :failure
-  end
+  # not_found do
+  #   status 404
+  #   erb :failure
+  # end
 
   helpers do
 		def logged_in?

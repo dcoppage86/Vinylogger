@@ -9,22 +9,23 @@ class UsersController < ApplicationController
     end
   end
 
-  post "/login" do
-    user = User.find_by(:username => params["username"])
+  get '/login' do
+    erb :"/users/login"
+  end
 
-    if user && user.authenticate(params["password"])
+  post "/login" do
+    user = User.find_by(:username => params[:username])
+
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash.next[:greeting] = "Ready To Log Some More Wax, #{user.username}?"
       redirect "/account"
     else
-      flash.next[:error] = "Way To Go Cochise, Want To Try That Again?"
-      redirect "applications/login"
+      redirect :login
     end
   end
 
   get "/signup" do
-
-    erb :"/users/new.html"
+    erb :"/users/signup"
   end
 
   # POST: /users
