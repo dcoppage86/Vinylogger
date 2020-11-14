@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  get "/users" do
+  get "/users/account" do
     if !logged_in?
       redirect "/login"
     else
@@ -18,13 +18,13 @@ class UsersController < ApplicationController
   end
 
   post "/login" do
-    user = User.find_by(:username => params[:username])
+    @user = User.find_by(:username => params[:username])
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect "/account"
+      erb :"/users/account"
     else
-      redirect "/failure"
+      erb :"/failure"
     end
   end
 
@@ -39,10 +39,6 @@ class UsersController < ApplicationController
       User.create(username: params[:username], password: params[:password])
       redirect "/login"
     end
-  end
-
-  get '/users/account' do
-    redirect "/users/account"
   end
 
   get '/logout' do
