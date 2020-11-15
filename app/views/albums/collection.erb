@@ -1,1 +1,10 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<% @albums.each do |album| %>
+    <%= album.title %>
+    <%= album.artist %>
+    <%= album.release_date %>
+    <%= ablum.description %>
+  
+<% end %>
+  
+<!-- back to user's home page -->
+<a class="button" href="/users/account">HOME</a>

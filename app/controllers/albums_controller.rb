@@ -1,15 +1,21 @@
 class AlbumsController < ApplicationController
 
  
-  get "/albums" do
+  get "/album/collection" do
     if !logged_in?
       redirect "/login"
     else
       @user = current_user
-      @albums = Album.all.select { |album| album.user_id == @user.id}
-      erb :'/album/index'
+      @albums = Album.all #.select { |album| album.user_id == @user.id}
+      erb :'/albums/collection'
     end
   end
+
+  # post '/album/collection' do
+  #   if !logged_in?
+  #     redirect "/login"
+  #   else
+  #     if (params[:user]
 
   get "/album/new" do
     if !logged_in?
@@ -27,12 +33,12 @@ class AlbumsController < ApplicationController
 
   # GET: /albums/5
   get "/albums/:id" do
-    erb :"/albums/show.html"
+    erb :"/albums/collection"
   end
 
   # GET: /albums/5/edit
   get "/albums/:id/edit" do
-    erb :"/albums/edit.html"
+    erb :"/albums/edit"
   end
 
   # PATCH: /albums/5
