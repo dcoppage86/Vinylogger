@@ -5,9 +5,12 @@ require './app/models/review'
 
 class ApplicationController < Sinatra::Base
 
+  set :views, proc { File.join(root, '../views/') }
+
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
     set :session_secret, '5eb78c1c609a61c9f5408facc88e7138'
   end
 

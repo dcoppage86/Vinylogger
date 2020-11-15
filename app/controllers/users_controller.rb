@@ -1,20 +1,7 @@
 class UsersController < ApplicationController
 
-  get "/users/account" do
-    if !logged_in?
-      redirect "/login"
-    else
-      @user = current_user
-      erb :"/users/account"
-    end
-  end
-
-  get '/failure' do
-    erb :'/users/failure'
-  end
-
   get '/login' do
-    erb :"/users/login"
+    erb :"users/login"
   end
 
   post "/login" do
@@ -24,7 +11,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       erb :"/users/account"
     else
-      erb :"/failure"
+      erb :"/users/failure"
     end
   end
 
@@ -34,11 +21,29 @@ class UsersController < ApplicationController
 
   post "/users/signup" do
     if params[:username] == "" || params[:password] == ""
-      redirect "/failure"
+      redirect "users/failure"
     else
       User.create(username: params[:username], password: params[:password])
       redirect "/login"
     end
+  end
+
+  # get '/account' do
+  #   erb :"/users/account"
+  # end
+
+  get "/users/account" do
+    if !logged_in?
+      redirect "/login"
+    else
+      @user = current_user
+      redirect "/users/account"
+    end
+  end
+
+
+  get '/failure' do
+    erb :'/users/failure'
   end
 
   get '/logout' do

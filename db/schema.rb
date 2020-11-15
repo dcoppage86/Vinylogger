@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201111060106) do
+ActiveRecord::Schema.define(version: 20201115082030) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "artist"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20201111060106) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "email"
   end
 
 end

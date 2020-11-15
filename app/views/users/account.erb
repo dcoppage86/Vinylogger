@@ -1,1 +1,20 @@
-<h1>Welcome, <b> <%= @user.email %> </b>
+<!-- User's home page --> 
+
+<center>
+
+<h1>Welcome To Your Homepage, <b> <%= @user.username %> </b> </h1>
+
+    <p> This is your space to log your collection of albums!<br>
+    Are you ready to get started?
+    <br>
+    <br>
+    <a class="button" href="/album/new"> Add An Album </a>
+    <br>
+    <a class="button" href="/albums/collection"> See Your Collection </a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a class="button" href="/logout"> Log Out </a>
+</center>
