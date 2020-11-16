@@ -21,7 +21,9 @@ class UsersController < ApplicationController
 
   post "/users/signup" do
     if params[:username] == "" || params[:password] == ""
-      redirect "users/failure"
+      redirect "/users/failure"
+    elsif !!User.find_by(username: params[:username]) || !!User.find_by(email: params[:email])
+      redirect "/users/failure"
     else
       User.create(username: params[:username], password: params[:password])
       redirect "/login"
@@ -42,7 +44,7 @@ class UsersController < ApplicationController
   end
 
 
-  get '/failure' do
+  get '/users/failure' do
     erb :'/users/failure'
   end
 

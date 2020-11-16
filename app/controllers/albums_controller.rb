@@ -51,6 +51,7 @@ class AlbumsController < ApplicationController
 
   
   patch "/albums/:id" do
+    # binding.pry
     if logged_in?
       @user = current_user
       @album = Album.find_by_id(params[:id])
@@ -60,7 +61,7 @@ class AlbumsController < ApplicationController
       @album.description = params[:description]
       @album.image = params[:image]
       @album.save
-      redirect '/albums/#{@album.id}'
+      redirect "/albums/#{@album.id}"
     else
       redirect '/login'
     end

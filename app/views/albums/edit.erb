@@ -1,22 +1,22 @@
 <center>
 <h1>Edit Your Album</h1>
-
+<% #binding.pry%>
 <form action="/albums/<%=@album.id%>" method="post">
-    <input type="hidden" name="_method" value="PATCH">
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
     Title:
-    <input type="text" name="album.title" value="<%= @album.title %>">
+    <input type="text" name="title" value="<%=@album.title%>">
     <br>
     Artist:
-    <input type="text" name="album.artist" value="<%= @album.artist %>">
+    <input type="text" name="artist" value="<%=@album.artist%>">
     <br>
     Release Date:
-    <input type="text" name="album.release_date" value="<%= @album.release_date %>">
+    <input type="text" name="release_date" value="<%=@album.release_date%>">
     <br>
     Description:
-    <input type="" name="album.description" value="<%= @album.description %>">
+    <input type="" name="description" value="<%=@album.description%>">
     <br>
     Image:
-    <input type="url" name="album.image" value="<%= @album.image %>">
+    <input type="url" name="image" value="<%=@album.image%>">
     <br>
     <br>
     <input type="submit" name="submit">
