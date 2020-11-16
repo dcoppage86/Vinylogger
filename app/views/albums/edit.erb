@@ -1,8 +1,8 @@
 <center>
 <h1>Edit Your Album</h1>
 
-<form action="/albums/collection/<%= @album.id% >" method="post">
-    <input type="hidden" name="_method" value="patch">
+<form action="/albums/<%=@album.id%>" method="post">
+    <input type="hidden" name="_method" value="PATCH">
     Title:
     <input type="text" name="album.title" value="<%= @album.title %>">
     <br>

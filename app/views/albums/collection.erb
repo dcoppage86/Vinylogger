@@ -11,9 +11,9 @@
         
     </ol>
 
-    <a class="button" href="/albums/collection/<%=album.id%>/edit">Edit</a> <br> 
+    <a class="button" href="/albums/<%=album.id%>/edit">Edit</a> <br> 
 
-    <form method="post" action="/albums/collection/<%= album.id %>">
+    <form method="post" action="/albums/<%=album.id%>">
     <input type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete">
     </form>

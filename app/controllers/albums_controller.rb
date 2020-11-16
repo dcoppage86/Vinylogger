@@ -21,7 +21,7 @@ class AlbumsController < ApplicationController
     end
   end
 
-  get "/album/new" do
+  get "/albums/new" do
     if !logged_in?
       redirect "/login"
     else
@@ -60,16 +60,16 @@ class AlbumsController < ApplicationController
       @album.description = params[:description]
       @album.image = params[:image]
       @album.save
-      redirect '/albums/#[@album.id}'
+      redirect '/albums/#{@album.id}'
     else
       redirect '/login'
     end
   end
 
 
-  delete "/albums/:id/delete" do
+  delete "/albums/:id" do
     @album = Album.find_by_id(params[:id])
-    @album.delete
+    @album.destroy
     redirect "/albums/collection"
   end
 end
