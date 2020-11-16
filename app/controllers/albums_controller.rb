@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
 
  
-  get "/album/collection" do
+  get "/albums" do
     if !logged_in?
       redirect "/login"
     else
@@ -11,11 +11,14 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # post '/album/collection' do
-  #   if !logged_in?
-  #     redirect "/login"
-  #   else
-  #     if (params[:user]
+  post '/albums' do
+    if !logged_in?
+      redirect "/login"
+    else
+      @user = current_user
+      Album.create(title: @album.title, artist: @artist.title, release_date: @album.release_date, description: @album.description)
+    end
+  end
 
   get "/album/new" do
     if !logged_in?
@@ -25,11 +28,6 @@ class AlbumsController < ApplicationController
       erb :"/albums/new"
     end
   end
-
-  # # POST: /albums
-  # post "/albums" do
-  #   redirect "/albums"
-  # end
 
   # # GET: /albums/5
   # get "/albums/:id" do
