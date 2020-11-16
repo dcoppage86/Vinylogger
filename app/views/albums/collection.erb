@@ -1,8 +1,14 @@
+<h1>ALBUM COLLECTION</h1>
+
 <% @albums.each do |album| %>
-    <%= album.title %>
-    <%= album.artist %>
-    <%= album.release_date %>
-    <%= ablum.description %>
-  
+    <ol>
+        <li>
+            <h3><%= album.title %></h2>
+            <img src="<%= album.image %>" alt="album">
+            <h3><%= album.artist %></h3>
+            <p><%= album.release_date %></p>
+            <p><%= album.description %></p>
+        </li>
+    </ol>
 <% end %>
   

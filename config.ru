@@ -8,7 +8,7 @@ end
 use UsersController
 run ApplicationController
 use AlbumsController
-use ReviewsController
+
 
 
 
