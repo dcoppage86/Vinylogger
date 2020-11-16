@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # get '/account' do
+  # post '/account' do
   #   erb :"/users/account"
   # end
 
@@ -39,9 +39,10 @@ class UsersController < ApplicationController
       redirect "/login"
     else
       @user = current_user
-      redirect "/users/account"
+      erb :"/users/account"
     end
   end
+
 
 
   get '/users/failure' do
