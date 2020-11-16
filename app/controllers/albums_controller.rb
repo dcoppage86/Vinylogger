@@ -33,7 +33,7 @@ class AlbumsController < ApplicationController
   
   get "/albums/:id" do
     if logged_in?
-      @album = Album.find_by_id(params[:id])
+      @album = Album.find_by_id(params["id"])
       erb :"/albums/show"
     else
       redirect '/login'
