@@ -22,7 +22,7 @@ class AlbumsController < ApplicationController
       redirect "/login"
     else
       @albums = Album.all
-      erb :"/albums/collection"
+      erb :"/albums/new"
     end
   end
 

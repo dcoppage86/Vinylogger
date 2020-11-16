@@ -1,7 +1,6 @@
 require './config/environment'
 require './app/models/user'
 require './app/models/album'
-require './app/models/review'
 
 class ApplicationController < Sinatra::Base
 
