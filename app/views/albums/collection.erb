@@ -2,18 +2,18 @@
 
 <% @albums.each do |album| %>
     <ol>
-        <li>
-            <h3><%= album.title %></h2>
-            <img src="<%= album.image %>" alt="album">
-            <h3><%= album.artist %></h3>
-            <p><%= album.release_date %></p>
-            <p><%= album.description %></p>
-        </li>
+    
+        <h3><%= album.title %></h2>
+        <img src="<%= album.image %>" alt="album">
+        <h3><%= album.artist %></h3>
+        <p><%= album.release_date %></p>
+        <p><%= album.description %></p>
+        
     </ol>
 
     <a class="button" href="/albums/collection/<%=album.id%>/edit">Edit</a> <br> 
 
-    <form method="post" action="/album/collection/<%= album.id %>">
+    <form method="post" action="/albums/collection/<%= album.id %>">
     <input type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete">
     </form>

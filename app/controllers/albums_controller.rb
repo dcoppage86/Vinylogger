@@ -1,22 +1,23 @@
 class AlbumsController < ApplicationController
 
  
-  get "/albums" do
+  get "/albums/collection" do
     if !logged_in?
       redirect "/login"
     else
       # @user = current_user
-      @albums = Album.all#.select { |album| album.user_id == @user.id}
+      @albums = Album.all
       erb :'/albums/collection'
     end
   end
 
-  post '/albums' do
+  post '/albums/collection' do
     if !logged_in?
       redirect "/login"
     else
       @user = current_user
-      Album.create(title: @album.title, artist: @artist.title, release_date: @album.release_date, description: @album.description)
+      Album.create(title: params[:title], artist: params[:artist], release_date: params[:release_date], description: params[:description])
+      redirect "/albums/collection"
     end
   end
 
@@ -29,23 +30,46 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # # GET: /albums/5
-  # get "/albums/:id" do
-  #   erb :"/albums/collection"
-  # end
+  
+  get "/albums/:id" do
+    if logged_in?
+      @album = Album.find_by_id(params[:id])
+      erb :"/albums/show"
+    else
+      redirect '/login'
+    end
+  end
 
-  # # GET: /albums/5/edit
-  # get "/albums/:id/edit" do
-  #   erb :"/albums/edit"
-  # end
+  get "/albums/:id/edit" do
+    if logged_in?
+      @album = Album.find_by_id(params[:id])
+      erb :'albums/edit'
+    else
+      redirect '/login'
+    end
+  end
 
-  # # PATCH: /albums/5
-  # patch "/albums/:id" do
-  #   redirect "/albums/:id"
-  # end
+  
+  patch "/albums/:id" do
+    if logged_in?
+      @user = current_user
+      @album = Album.find_by_id(params[:id])
+      @album.title = params[:title]
+      @album.artist = params[:artist]
+      @album.release_date = params[:release_date]
+      @album.description = params[:description]
+      @album.image = params[:image]
+      @album.save
+      redirect '/albums/#[@album.id}'
+    else
+      redirect '/login'
+    end
+  end
 
-  # # DELETE: /albums/5/delete
-  # delete "/albums/:id/delete" do
-  #   redirect "/albums"
-  # end
+
+  delete "/albums/:id/delete" do
+    @album = Album.find_by_id(params[:id])
+    @album.delete
+    redirect "/albums/collection"
+  end
 end

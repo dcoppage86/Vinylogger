@@ -1,1 +1,24 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<center>
+<h1>Edit Your Album</h1>
+
+<form action="/albums/collection/<%= @album.id% >" method="post">
+    <input type="hidden" name="_method" value="patch">
+    Title:
+    <input type="text" name="album.title" value="<%= @album.title %>">
+    <br>
+    Artist:
+    <input type="text" name="album.artist" value="<%= @album.artist %>">
+    <br>
+    Release Date:
+    <input type="text" name="album.release_date" value="<%= @album.release_date %>">
+    <br>
+    Description:
+    <input type="" name="album.description" value="<%= @album.description %>">
+    <br>
+    Image:
+    <input type="url" name="album.image" value="<%= @album.image %>">
+    <br>
+    <br>
+    <input type="submit" name="submit">
+</form>
+</center>
