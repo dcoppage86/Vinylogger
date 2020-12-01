@@ -12,7 +12,7 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'sinatra-flash', '~> 0.3.0'
-gem 'sinatra-sessionography', '~> 0.1.1'
+# gem 'sinatra-sessionography', '~> 0.1.1'
 gem 'yard', '~> 0.9.25'
 gem 'bigdecimal', '1.4.2'
 

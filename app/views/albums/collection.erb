@@ -9,7 +9,8 @@
     <ol>
     
         <h3><a href="/albums/<%= album.id %>"><%= album.title %></a></h3>
-        <img src="<%= album.image %>" alt="album" width="300" height="300"><a class="button" href="/albums/<%=album.id%>/edit">Edit</a>
+        <img src="<%= album.image %>" alt="album" width="300" height="300">
+        <a class="button" href="/albums/<%=album.id%>/edit">Edit</a>
         <h3><%= album.artist %></h3>
         <p><%= album.release_date %></p>
         <p><%= album.description %></p>

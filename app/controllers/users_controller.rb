@@ -5,13 +5,15 @@ class UsersController < ApplicationController
   end
 
   post "/login" do
+    # binding.pry
     @user = User.find_by(:username => params[:username])
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      erb :"/users/account"
+
+      redirect "/users/account"
     else
-      erb :"/users/failure"
+      redirect "/users/failure"
     end
   end
 
@@ -19,15 +21,22 @@ class UsersController < ApplicationController
     erb :"/users/signup"
   end
 
-  post "/users/signup" do
-    if params[:username] == "" || params[:password] == ""
-      redirect "/users/failure"
-    elsif !!User.find_by(username: params[:username]) || !!User.find_by(email: params[:email])
-      redirect "/users/failure"
-    else
-      User.create(username: params[:username], password: params[:password])
-      redirect "/login"
-    end
+  post "/signup" do
+    # binding.pry
+    user = User.new(params)
+        if user.save
+            redirect "/login"
+        else
+            redirect "/signup"
+        end
+    # if params[:username] == "" || params[:password] == ""
+    #   redirect "/users/failure"
+    # elsif !!User.find_by(username: params[:username]) || !!User.find_by(email: params[:email])
+    #   redirect "/users/failure"
+    # else
+    #   User.create(username: params[:username], password: params[:password])
+    #   redirect "/login"
+    # end
   end
 
   # post '/account' do
@@ -50,11 +59,13 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    if logged_in?
-      session.clear
-      redirect '/'
-    else
-      redirect :'/users/failure'
-    end
+    session.clear
+    redirect '/'
+    # if logged_in?
+    #   session.clear
+    #   redirect '/'
+    # else
+    #   redirect :'/users/failure'
+    # end
   end
 end

@@ -5,8 +5,8 @@ class AlbumsController < ApplicationController
     if !logged_in?
       redirect "/login"
     else
-      # @user = current_user
-      @albums = Album.all
+      @user = current_user
+      @albums = @user.albums
       erb :'/albums/collection'
     end
   end
@@ -15,8 +15,7 @@ class AlbumsController < ApplicationController
     if !logged_in?
       redirect "/login"
     else
-      @user = current_user
-      Album.create(title: params[:title], artist: params[:artist], release_date: params[:release_date], description: params[:description])
+      album = current_user.albums.create(title: params[:title], artist: params[:artist], release_date: params[:release_date], description: params[:description])
       redirect "/albums/collection"
     end
   end
@@ -25,7 +24,6 @@ class AlbumsController < ApplicationController
     if !logged_in?
       redirect "/login"
     else
-      @albums = Album.all
       erb :"/albums/new"
     end
   end
@@ -41,7 +39,9 @@ class AlbumsController < ApplicationController
   end
 
   get "/albums/:id/edit" do
-    if logged_in?
+    if !logged_in?
+      redirect '/login'
+    elsif current_user
       @album = Album.find_by_id(params[:id])
       erb :'albums/edit'
     else
