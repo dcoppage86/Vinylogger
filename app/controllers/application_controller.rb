@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, '5eb78c1c609a61c9f5408facc88e7138'
+    set :session_secret, 'secret'
   end
 
   get "/" do
@@ -24,11 +24,7 @@ class ApplicationController < Sinatra::Base
 		end
 
 		def current_user
-			User.find(session[:user_id])
-    end
-    
-    def authorized?(album)
-      current_user.id == album.user_id
+			@current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 	end
 

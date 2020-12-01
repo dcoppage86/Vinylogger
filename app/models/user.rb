@@ -1,9 +1,7 @@
 class User < ActiveRecord::Base
-    # validates :username, prescence: true
-
-    # validates :username, prescence: true
+    validates :email, :password, :username, presence: true
+    validates :email, :username, uniqueness: true
 
     has_secure_password 
     has_many :albums
-    
 end
