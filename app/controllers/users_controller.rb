@@ -24,11 +24,12 @@ class UsersController < ApplicationController
   post "/signup" do
     # binding.pry
     user = User.new(params)
-        if user.save
-            redirect "/login"
-        else
-            redirect "/signup"
-        end
+      if user.save
+        session[:user_id] = @user.id
+        redirect "/login"
+      else
+        redirect "/signup"
+      end
     # if params[:username] == "" || params[:password] == ""
     #   redirect "/users/failure"
     # elsif !!User.find_by(username: params[:username]) || !!User.find_by(email: params[:email])
