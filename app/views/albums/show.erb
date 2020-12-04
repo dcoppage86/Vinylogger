@@ -4,6 +4,11 @@
 <p><%= @album.release_date %></p>
 <p><%= @album.description %></p>
 
+<% if current_user == true %>
+<form method="patch" action="/albums/<%=@album.id%>/edit">
+    <input type="hidden" name="_method" value="edit">
+    <input type="submit" value="Edit">
+</form>
 <form method="post" action="/albums/<%=@album.id%>">
     <input type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete">
@@ -12,3 +17,4 @@
     <input type="hidden" name="_method" value="Home">
     <input type="submit" value="Home">
 </form>
+<% end %>

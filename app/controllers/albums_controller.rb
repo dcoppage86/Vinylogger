@@ -45,7 +45,7 @@ class AlbumsController < ApplicationController
       @album = Album.find_by_id(params[:id])
       erb :'albums/edit'
     else
-      redirect '/login'
+      redirect '/albums/collection'
     end
   end
 
