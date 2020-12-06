@@ -39,14 +39,22 @@ class AlbumsController < ApplicationController
   end
 
   get "/albums/:id/edit" do
-    if !logged_in?
-      redirect '/login'
-    elsif current_user
-      @album = Album.find_by_id(params[:id])
-      erb :'albums/edit'
-    else
-      redirect '/albums/collection'
+    if @album = Album.find_by_id(params[:id])
+      if @album.user.id == current_user.id
+        erb :'albums/edit'
+      else
+        redirect 'users/failure'
+      end
     end
+    # -----old method to preventing a user from editing another users entry
+    # if !logged_in?
+    #   redirect '/login'
+    # elsif current_user
+    #   @album = Album.find_by_id(params[:id])
+    #   erb :'albums/edit'
+    # else
+    #   redirect '/albums/collection'
+    # end
   end
 
   
@@ -69,8 +77,16 @@ class AlbumsController < ApplicationController
 
 
   delete "/albums/:id" do
-    @album = Album.find_by_id(params[:id])
-    @album.destroy
-    redirect "/albums/collection"
+    if @album = Album.find_by_id(params[:id])
+      if @album.user.id == current_user.id
+        @album.destroy
+      else
+        redirect 'users/failure'
+      end
+    end
+    # if @album = 
+    # @album = Album.find_by_id(params[:id])
+    # @album.destroy
+    # redirect "/albums/collection"
   end
 end
