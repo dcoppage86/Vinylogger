@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     # binding.pry
     user = User.new(params)
       if user.save
-        session[:user_id] = @user.id
+        session[:user_id] = user.id
         redirect "/login"
       else
         redirect "/signup"
